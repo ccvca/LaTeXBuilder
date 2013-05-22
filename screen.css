@@ -1,0 +1,11 @@
+/*
+ * @copyright 2013
+ * @author ccvca https://github.com/ccvca/
+ * @licence http://creativecommons.org/licenses/by-nc-sa/3.0/de/ (EN: http://creativecommons.org/licenses/by-nc-sa/3.0/)
+*/
+@CHARSET "ISO-8859-1";
+
+#LaTeXerrorDiv{
+	max-height: 150px;
+	overflow-y: scroll; 
+}
