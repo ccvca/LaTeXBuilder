@@ -2,20 +2,13 @@
     "author": "ccvca",
     "version": "0.1",
     "name": "LaTeXBuilder",
-    "url": "https://github.com/ccvca/LaTeXBuild.git",
+    "url": "https://github.com/ccvca/LaTeXBuilder.git",
     "rightbar": [
         {
             "action": "codiad.latexbuild.open();",
             "icon": "icon-tools",
-            "title": "Latexbuild"
+            "title": "LaTeXBuild"
         }
     ],
-    "contextmenu": [
-        {
-            "action": "codiad.latexbuild.open();",
-            "icon": "icon-tools",
-            "applies-to": "both",
-            "title": "Latexbuild"
-        }
-    ]
+    "contextmenu": []
 }]

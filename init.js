@@ -24,7 +24,7 @@ var debug;
 	
 	global.codiad.latexbuild = {
 
-		latexBuildDir:'plugins/latexbuild/',
+		latexBuildDir:'plugins/LaTeXBuilder/',
 		pdfjsPath:'/pdf.js/web/viewer.html',
 		codiadURL: null, //Will be initialised in init()
 		pdfPath: null, //Will be initialised in init()
