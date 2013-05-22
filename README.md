@@ -9,3 +9,4 @@ The PDF viewer has `SyncTeX` included to analyse the output PDF quickly.
  
  See INSTALL.md for installation.
  
+ For `SyncTeX` use alt+Click in the PDF viewer.
