@@ -43,7 +43,7 @@ var debug;
 			//CodiadDir for f.e. /codiadLaTeX without a slash at the end
 			this.codiadURL = global.location.pathname.substr(0, global.location.pathname.lastIndexOf('/'));
 			
-			this.pdfPath = this.latexBuildDir+'getPDF.php';
+			this.pdfPath = this.codiadURL+'/'+this.latexBuildDir+'getPDF.php';
 		},
 
 		termWidth : $(window).outerWidth() - 500,
@@ -176,7 +176,7 @@ var debug;
 		
 		openPDF: function(){
 			//height=pixels,
-			var popup = window.open(this.pdfjsPath + '?file='+ this.codiadURL+ '/' + this.pdfPath,
+			var popup = window.open(this.pdfjsPath + '?file='+ this.pdfPath,
 					'latexbuildPdfView', 'width=800, right=15, location=no, menubar=no, status=no');
 			
 			
