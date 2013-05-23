@@ -10,6 +10,15 @@ var debug;
 		codiad.latexbuild.init();
 	});
 	
+	var pluginPath = null;
+	
+	(function(){
+		var scripts = document.getElementsByTagName('script');
+	    var path = scripts[scripts.length-1].src.split('?')[0];
+	    pluginPath = path.split('/').slice(0, -1).join('/')+'/';
+	})();
+	
+	
 	var lastLine = null;
 	var lastPath = null;
 
@@ -24,9 +33,9 @@ var debug;
 	
 	global.codiad.latexbuild = {
 
-		latexBuildDir:'plugins/LaTeXBuilder/',
+		processPath: null,
+		dialogPath: null,
 		pdfjsPath: null,
-		codiadURL: null, //Will be initialised in init()
 		pdfPath: null, //Will be initialised in init()
 		
 		//pdf.js popup
@@ -41,16 +50,17 @@ var debug;
 			
 			amplify.subscribe('active.onFocus', this.ActiveOnActive);
 			//CodiadDir for f.e. /codiadLaTeX without a slash at the end
-			this.codiadURL = global.location.pathname.substr(0, global.location.pathname.lastIndexOf('/'));
-			this.pdfjsPath = this.codiadURL+'/'+this.latexBuildDir+'resources/pdf.js/web/viewer.html';
-			this.pdfPath = this.codiadURL+'/'+this.latexBuildDir+'getPDF.php';
+			this.processPath = pluginPath+'process.php';
+			this.dialogPath = pluginPath+'dialog.php';
+			this.pdfjsPath = pluginPath+'resources/pdf.js/web/viewer.html';
+			this.pdfPath = pluginPath+'getPDF.php';
 		},
 
 		termWidth : $(window).outerWidth() - 500,
 
 		open : function(){
 			codiad.modal.load(this.termWidth,
-					this.latexBuildDir+'dialog.php');
+					self.dialogPath);
 			codiad.modal.hideOverlay();
 		},
 
@@ -68,14 +78,14 @@ var debug;
 		},
 
 		buildPDF : function(){
-			$.post(self.latexBuildDir+"process.php", {
+			$.post(self.processPath, {
 				'action' : 'buildPDF'
 			}, function(oresp){
 				resp = $.parseJSON(oresp);
 				if (resp.status == 'success') {
 					//Look when it's finish
 					pdfBuildCheck = setInterval(function(){
-						$.post(self.latexBuildDir+"process.php", {
+						$.post(self.processPath, {
 							'action' : 'checkRunning'
 						}, function(resp){
 							resp = $.parseJSON(resp); 
@@ -96,7 +106,7 @@ var debug;
 		
 		//check if errors occure
 		checkErrors : function(){
-			$.post(this.latexBuildDir+"process.php", {
+			$.post(self.processPath, {
 				'action' : 'getLaTeXErrors'
 			}, function(oresp){
 				resp = $.parseJSON(oresp);
@@ -149,7 +159,7 @@ var debug;
 		},
 
 		checkRunning : function(){
-			$.post(this.latexBuildDir+"process.php", {
+			$.post(self.processPath, {
 				'action' : 'checkRunning'
 			}, this.showStatus);
 
@@ -278,7 +288,7 @@ var debug;
 				var realY = scaleY * ry;
 				
 				//get the File out of SyncTex
-				$.post(self.latexBuildDir+"process.php", {
+				$.post(self.processPath, {
 					'action' : 'SyncTeXGetFile',
 					'realX' : realX,
 					'realY' : realY,
@@ -320,14 +330,8 @@ var debug;
 				lastPath = null;
 				lastLine = null;
 			}
-		}/*,
-		
-		getLaTeXErrors: function(){
-			//getLaTeXErrors
-			$.post(self.latexBuildDir+"process.php", {
-				'action' : 'getLaTeXErrors'
-			}, this.showStatus);
-		}*/
+		}
+
 
 	};
 })(this, jQuery);

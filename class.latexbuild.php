@@ -7,10 +7,12 @@
 //The subdir in the Project were buildfiles are stored
 DEFINE('BUILD_DIR', '.build');
 
+$filepath = dirname(__FILE__);
+
 require_once "config.php";
 require_once COMPONENTS.'/filemanager/class.filemanager.php';
-require_once PLUGINS.'/LaTeXBuilder/resources/class.processLinux.php';
-require_once PLUGINS.'/LaTeXBuilder/resources/class.processWindows.php';
+require_once $filepath.'/resources/class.processLinux.php';
+require_once $filepath.'/resources/class.processWindows.php';
 
 //TODO Don't store pid in SESSION, use something "global" for it, for different users
 
