@@ -9,8 +9,8 @@ DEFINE('BUILD_DIR', '.build');
 
 require_once "config.php";
 require_once COMPONENTS.'/filemanager/class.filemanager.php';
-require_once PLUGINS.'/latexbuild/resources/class.processLinux.php';
-require_once PLUGINS.'/latexbuild/resources/class.processWindows.php';
+require_once PLUGINS.'/LaTeXBuilder/resources/class.processLinux.php';
+require_once PLUGINS.'/LaTeXBuilder/resources/class.processWindows.php';
 
 //TODO Don't store pid in SESSION, use something "global" for it, for different users
 

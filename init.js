@@ -25,7 +25,7 @@ var debug;
 	global.codiad.latexbuild = {
 
 		latexBuildDir:'plugins/LaTeXBuilder/',
-		pdfjsPath:'/pdf.js/web/viewer.html',
+		pdfjsPath: null,
 		codiadURL: null, //Will be initialised in init()
 		pdfPath: null, //Will be initialised in init()
 		
@@ -42,7 +42,7 @@ var debug;
 			amplify.subscribe('active.onFocus', this.ActiveOnActive);
 			//CodiadDir for f.e. /codiadLaTeX without a slash at the end
 			this.codiadURL = global.location.pathname.substr(0, global.location.pathname.lastIndexOf('/'));
-			
+			this.pdfjsPath = this.codiadURL+'/'+this.latexBuildDir+'resources/pdf.js/web/viewer.html';
 			this.pdfPath = this.codiadURL+'/'+this.latexBuildDir+'getPDF.php';
 		},
 
