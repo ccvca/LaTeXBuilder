@@ -68,7 +68,7 @@ var debug;
 			if(codiad.active.getPath() == null){
 				codiad.message.error('No active file.');
 			}else{
-				$.post(self.latexBuildDir+"process.php", {
+				$.post(self.processPath, {
 					'action' : 'setMainTex',
 					'filename' : codiad.active.getPath()
 				}, this.showStatus);
