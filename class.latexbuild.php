@@ -67,7 +67,7 @@ class CLatexBuild{
 			return array('status' => 'error', 'msg' => 'There is already a build running.');
 		}
 		
-		chdir(WORKSPACE.'/'.$_SESSION['project'].'/'.BUILD_DIR);
+		chdir(WORKSPACE.'/'.$_SESSION['project']);
 		$pid = false;
 		//need --c-style-errors for windows and -file-line-error for linux
 		//--c-style-errors -file-line-error
@@ -77,7 +77,7 @@ class CLatexBuild{
 			$cmd .= '--shell-escape --enable-write18 ';
 		}
 		$cmd .= '-output-directory '.escapeshellarg(WORKSPACE.'/'.$_SESSION['project'].'/'.BUILD_DIR);
-		$cmd .= ' -interaction=nonstopmode '.escapeshellarg(escapeshellcmd('../'.$mainFile));
+		$cmd .= ' -interaction=nonstopmode '.escapeshellarg(escapeshellcmd($mainFile));
 		
 		$this->process->setCommand($cmd);
 		
